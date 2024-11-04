@@ -1,6 +1,7 @@
 from django.db import models
 from relationship_app.models import Author  # Import the Author model
 from bookshelf.models import Book  # Import the Book model
+from .models import Library  # Import the Library model
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -15,6 +16,10 @@ class Book(models.Model):
 class Library(models.Model):
     name = models.CharField(max_length=100)  # Name of the library
     books = models.ManyToManyField(Book)  # ManyToMany relationship to Book
+
+class Librarian(models.Model):
+    name = models.CharField(max_length=100)  # Name of the librarian
+    library = models.OneToOneField(Library, on_delete=models.CASCADE)  # OneToOne relationship to Library
     
  def __str__(self):
         return self.name
