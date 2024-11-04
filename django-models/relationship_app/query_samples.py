@@ -3,7 +3,7 @@ import os
 import django
 
 # Set up Django environment
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'your_project_name.settings')  # Replace 'your_project_name' with the actual name of your project
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'relationship_app.settings')  # Relationship_app is the name of your project
 django.setup()
 
 from bookshelf.models import Book
