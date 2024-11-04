@@ -1,5 +1,6 @@
 from django.db import models
 from relationship_app.models import Author  # Import the Author model
+from bookshelf.models import Book  # Import the Book model
 
 class Author(models.Model):
     name = models.CharField(max_length=100)
@@ -11,5 +12,9 @@ class Book(models.Model):
     author = models.ForeignKey(Author, on_delete=models.CASCADE)  # ForeignKey to Author
     publication_year = models.IntegerField()  # Publication year
 
+class Library(models.Model):
+    name = models.CharField(max_length=100)  # Name of the library
+    books = models.ManyToManyField(Book)  # ManyToMany relationship to Book
+    
  def __str__(self):
         return self.name
