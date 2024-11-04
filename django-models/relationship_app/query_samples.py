@@ -31,10 +31,10 @@ def list_all_books_in_library(library_name):
     except Library.DoesNotExist:
         print(f"Library '{library_name}' does not exist.")
 
-def retrieve_librarian_for_library(library_name):
+def retrieve_librarian_for_library(library):
     # Retrieve the librarian for a library directly using Librarian model
     try:
-        librarian = Librarian.objects.get(library__name=library_name)  # Directly get the librarian using the library's name
+        librarian = Librarian.objects.get(library=library_name)  # Directly get the librarian using the library's name
         print(f"Librarian for {library_name}: {librarian.name}")
     except Librarian.DoesNotExist:
         print(f"No librarian assigned to the library '{library_name}'.")
