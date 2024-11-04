@@ -34,14 +34,24 @@ def list_all_books_in_library(library_name):
 def retrieve_librarian_for_library(library_name):
     # Retrieve the librarian for a library
     try:
-        library = Library.objects.get(name=library_name)  # Get the library instance
+        
+        Library = Librarian.objects.get(name=librarian)  # Get the library instance
         librarian = library.librarian  # Access the librarian associated with the library
         if librarian:
             print(f"Librarian for {library_name}: {librarian.name}")
         else:
             print(f"No librarian assigned to the library '{library_name}'.")
     except Library.DoesNotExist:
+        print(f"Library '{library_name}' does not exist.")def retrieve_librarian_for_library(library_name):
+    # Retrieve the librarian for a library directly using the Librarian model
+    try:
+        librarian = Librarian.objects.get(library__name=library_name)  # Directly get the librarian using a reverse lookup
+        print(f"Librarian for {library_name}: {librarian.name}")
+    except Librarian.DoesNotExist:
+        print(f"No librarian assigned to the library '{library_name}'.")
+    except Library.DoesNotExist:
         print(f"Library '{library_name}' does not exist.")
+
 
 if __name__ == "__main__":
     # Example queries
