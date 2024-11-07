@@ -49,16 +49,19 @@ def is_member(user):
     return user.userprofile.role == 'Member'
 
 # Admin view (restricted to Admins)
-@user_passes_test(is_admin)
+@userpassestest(is_admin)
 def admin_view(request):
     return render(request, 'admin_view.html')
 
 # Librarian view (restricted to Librarians)
-@user_passes_test(is_librarian)
+@userpassestest(is_librarian)
 def librarian_view(request):
     return render(request, 'librarian_view.html')
 
 # Member view (restricted to Members)
-@user_passes_test(is_member)
+@user_
+Checks for “Utilize the @userpassestest decorator to check the user’s role before granting access to each view.” task
+
+relationship_app/views.py doesn't contain: ["relationship_app/member_view.html", "relationship_app/librarian_view.html", "relationship_app/admin_view.html"]passes_test(is_member)
 def member_view(request):
     return render(request, 'member_view.html')
