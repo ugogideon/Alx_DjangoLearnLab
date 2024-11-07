@@ -1,0 +1,15 @@
+<!-- templates/admin_view.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>Welcome, Admin</h1>
+    <p>This is the Admin dashboard, where you can manage users and system settings.</p>
+
+    <a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
