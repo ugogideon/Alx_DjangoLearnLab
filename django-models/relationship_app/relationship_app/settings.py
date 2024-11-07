@@ -54,7 +54,9 @@ ROOT_URLCONF = 'relationship_app.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "relationship_app/templates"],
+        # Or use BASE_DIR / 'templates' if you have a global templates directory
+        
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
