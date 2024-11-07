@@ -24,6 +24,7 @@ class Library(models.Model):
 class Librarian(models.Model):
     name = models.CharField(max_length=100)  # Name of the librarian
     library = models.OneToOneField(Library, on_delete=models.CASCADE)  # OneToOne relationship to Library
+
 class UserProfile(models.Model):
     ROLE_CHOICES = [
         ('Admin', 'Admin'),
@@ -36,8 +37,9 @@ class UserProfile(models.Model):
     
  def __str__(self):
         return f"{self.user.username} - {self.role}"
-
+ 
 # Signal to create a UserProfile when a new user is created
+
 @receiver(post_save, sender=User)
 def create_user_profile(sender, instance, created, **kwargs):
     if created:
