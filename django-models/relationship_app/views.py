@@ -27,9 +27,9 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # Automatically log the user in after registration
-            return redirect('home')  # Redirect to a 'home' page or any authenticated page
+            login(request, user)  # Automatically log in after registration
+            return redirect('home')  # Redirect to a home page or another view
     else:
         form = UserCreationForm()
-    return render(request, 'register.html', {'form': form})
+    return render(request, 'relationship_app/register.html', {'form': form})
     
