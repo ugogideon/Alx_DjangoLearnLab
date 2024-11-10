@@ -7,9 +7,9 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path('books/', list_books, name='list_books'),  # URL for the function-based view
-    path('add/', views.add_book, name='add_book'),  # URL for adding a book
-    path('edit/<int:book_id>/', views.edit_book, name='edit_book'),  # URL for editing a specific book
-    path('delete/<int:book_id>/', views.delete_book, name='delete_book'),  # URL for deleting a specific book
+    path('book/add/', views.add_book, name='add_book'),  # URL for adding a book
+    path('book/edit/<int:book_id>/', views.edit_book, name='edit_book'),  # URL for editing a specific book
+    path('book/delete/<int:book_id>/', views.delete_book, name='delete_book'),  # URL for deleting a specific book
     path('library/<int:pk>/', LibraryDetailView.as_view(), name='library_detail'),  # URL for the class-based view for Library
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),  # Login view
     path('logout/', auth_views.LogoutView.as_view(template_name='logout.html'), name='logout'),  # Logout view
