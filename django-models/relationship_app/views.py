@@ -1,19 +1,19 @@
-# views.py
+# relationship_app/views.py
+
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.views.generic.detail import DetailView
-"from .models import library"
-from relationship_app.models import Library, Book, UserProfile  # Make sure Book and UserProfile are correctly imported
-from relationship_app.forms import BookForm  # Assume you have a form for Book
+from .models import Library, Book, UserProfile  # Ensure all models are imported correctly
+from .forms import BookForm  # Import the Book form if it exists
 
 # View to list all books
 def list_books(request):
     books = Book.objects.all()  # Retrieve all books from the database
     return render(request, 'relationship_app/list_books.html', {'books': books})
 
-# Library Detail View
+# Class-based view to display a specific library's details, including its books
 class LibraryDetailView(DetailView):
     model = Library
     template_name = 'relationship_app/library_detail.html'
@@ -36,15 +36,13 @@ def register(request):
         form = UserCreationForm()
     return render(request, 'relationship_app/register.html', {'form': form})
 
-# Check if the user is an Admin
+# Role-checking functions
 def is_admin(user):
     return user.userprofile.role == 'Admin'
 
-# Check if the user is a Librarian
 def is_librarian(user):
     return user.userprofile.role == 'Librarian'
 
-# Check if the user is a Member
 def is_member(user):
     return user.userprofile.role == 'Member'
 
@@ -70,7 +68,7 @@ def add_book(request):
         form = BookForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('book_list')  # Redirect to book list page
+            return redirect('list_books')  # Redirect to book list page
     else:
         form = BookForm()
     return render(request, 'relationship_app/add_book.html', {'form': form})
@@ -83,7 +81,7 @@ def edit_book(request, book_id):
         form = BookForm(request.POST, instance=book)
         if form.is_valid():
             form.save()
-            return redirect('book_list')  # Redirect to book list page
+            return redirect('list_books')  # Redirect to book list page
     else:
         form = BookForm(instance=book)
     return render(request, 'relationship_app/edit_book.html', {'form': form})
@@ -94,5 +92,5 @@ def delete_book(request, book_id):
     book = get_object_or_404(Book, id=book_id)
     if request.method == 'POST':
         book.delete()
-        return redirect('book_list')  # Redirect to book list page
+        return redirect('list_books')  # Redirect to book list page
     return render(request, 'relationship_app/delete_book.html', {'book': book})
