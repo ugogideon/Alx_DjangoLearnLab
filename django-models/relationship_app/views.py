@@ -6,6 +6,7 @@ from django.contrib.auth.decorators import permission_required, user_passes_test
 from django.views.generic.detail import DetailView
 from relationship_app.models import Library, Book, UserProfile  # Make sure Book and UserProfile are correctly imported
 from relationship_app.forms import BookForm  # Assume you have a form for Book
+from .models import library
 
 # View to list all books
 def list_books(request):
