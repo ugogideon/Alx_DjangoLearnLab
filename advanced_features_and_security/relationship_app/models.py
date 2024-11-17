@@ -4,7 +4,6 @@ from django.db.models.signals import post_save
 from django.dispatch import receiver
 from django.utils.translation import gettext_lazy as _
 from relationship_app.models import Author  # Import the Author model
-from bookshelf.models import Book  # Import the Book model
 
 # Custom User Manager
 class CustomUserManager(BaseUserManager):
@@ -49,7 +48,7 @@ class Author(models.Model):
     def __str__(self):
         return self.name
 
-# Book Model with Custom Permissions
+# Book Model
 class Book(models.Model):
     title = models.CharField(max_length=200)  # Title of the book
     author = models.ForeignKey(Author, on_delete=models.CASCADE)  # ForeignKey to Author
