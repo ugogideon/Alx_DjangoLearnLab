@@ -11,4 +11,9 @@ class CustomUserAdmin(UserAdmin):
         (None, {'fields': ('date_of_birth', 'profile_photo')}),
     )
 
+@admin.register(Book)
+class BookAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'publication_year', 'isbn')
+    search_fields = ('title', 'author__name')  # Search by book title or author's name
+    
 admin.site.register(CustomUser, CustomUserAdmin)

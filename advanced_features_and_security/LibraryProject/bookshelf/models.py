@@ -44,5 +44,13 @@ class Book(models.Model):
     publication_year = models.PositiveIntegerField()  # Publication year
     isbn = models.CharField(max_length=13, unique=True)  # Optional: ISBN for the book
 
+ class Meta:
+        permissions = [
+            ("can_view", "Can view book"),
+            ("can_create", "Can create book"),
+            ("can_edit", "Can edit book"),
+            ("can_delete", "Can delete book"),
+        ]
+        
     def __str__(self):
         return self.title
