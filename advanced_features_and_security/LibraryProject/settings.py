@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-2$=nkich0b(w-snrqvf+szvm-&6)y)rn^8$(ud5h5ji*ds)3k$'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False # Ensure DEBUG is False in production
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['frost.com','www.frost.com']
 
 
 # Application definition
@@ -125,3 +125,17 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
 AUTH_USER_MODEL = 'bookshelf.CustomerUser'
+
+# Security Settings
+SECURE_BROWSER_XSS_FILTER = True  # Enable XSS protection
+X_FRAME_OPTIONS = 'DENY'  # Prevent framing of your site
+SECURE_CONTENT_TYPE_NOSNIFF = True  # Prevent content type sniffing
+
+# Enforce secure cookies
+CSRF_COOKIE_SECURE = True  # CSRF cookie over HTTPS only
+SESSION_COOKIE_SECURE = True  # Session cookie over HTTPS only
+
+# Secure Headers
+SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS (HSTS)
+SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to subdomains
+SECURE_HSTS_PRELOAD = True  # Add preload to HSTS

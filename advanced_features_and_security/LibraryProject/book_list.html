@@ -1,0 +1,47 @@
+{% extends 'base_generic.html' %}
+
+{% block content %}
+    <h1>Book List</h1>
+
+    <!-- Search form -->
+    <form method="get" action="{% url 'search_books' %}">
+        <input type="text" name="q" placeholder="Search books..." class="form-control" />
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <hr>
+
+    <!-- Displaying books -->
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Author</th>
+                <th>Publication Year</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for book in books %}
+                <tr>
+                    <td>{{ book.title }}</td>
+                    <td>{{ book.author.name }}</td>
+                    <td>{{ book.publication_year }}</td>
+                    <td>
+                        {% if perms.bookshelf.can_edit %}
+                            <a href="{% url 'edit_book' book.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                        {% endif %}
+                        {% if perms.bookshelf.can_delete %}
+                            <a href="{% url 'delete_book' book.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="4">No books found.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

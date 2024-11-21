@@ -1,7 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Book
 from django.contrib.auth.decorators import permission_required
+from django.db.models import Q
 
+# View for searching books
+def search_books(request):
+    query = request.GET.get('q')
+    if query:
+        books = Book.objects.filter(
+            Q(title__icontains=query) | Q(author__name__icontains=query)
+        )
+    else:
+        books = Book.objects.all()
+    return render(request, 'bookshelf/book_list.html', {'books': books})
+    
 # View for creating a book
 @permission_required('bookshelf.can_create', raise_exception=True)
 def create_book(request):
