@@ -125,7 +125,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Custom user model
-AUTH_USER_MODEL = 'bookshelf.CustomerUser'
+AUTH_USER_MODEL = 'bookshelf.CustomUser'
 
 # Security Settings
 SECURE_BROWSER_XSS_FILTER = True  # Enable XSS protection
