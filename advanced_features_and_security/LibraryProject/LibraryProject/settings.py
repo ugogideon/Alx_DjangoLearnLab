@@ -137,6 +137,7 @@ CSRF_COOKIE_SECURE = True  # CSRF cookie over HTTPS only
 SESSION_COOKIE_SECURE = True  # Session cookie over HTTPS only
 
 # Secure Headers
+SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
 SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS (HSTS)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to subdomains
 SECURE_HSTS_PRELOAD = True  # Add preload to HSTS
