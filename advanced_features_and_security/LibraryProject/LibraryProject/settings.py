@@ -141,6 +141,7 @@ SECURE_SSL_REDIRECT = True  # Redirect all HTTP requests to HTTPS
 SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS (HSTS)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to subdomains
 SECURE_HSTS_PRELOAD = True  # Add preload to HSTS
+SECURE_PROXY_SSL_HEADER", "HTTP_X_FORWARDED_PROTO
 
 # Content Security Policy (CSP)
 CSP_DEFAULT_SRC = ("'self'",)
