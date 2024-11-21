@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from .models import Book
 from django.contrib.auth.decorators import permission_required
 from django.db.models import Q
+from .forms import ExampleForm
 
 # View for searching books
 def search_books(request):
@@ -13,7 +14,7 @@ def search_books(request):
     else:
         books = Book.objects.all()
     return render(request, 'bookshelf/book_list.html', {'books': books})
-    
+
 # View for creating a book
 @permission_required('bookshelf.can_create', raise_exception=True)
 def create_book(request):
