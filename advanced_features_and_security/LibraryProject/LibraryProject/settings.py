@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles', 
     'bookshelf',
+    'csp', # Add django-csp
 ]
 
 MIDDLEWARE = [
@@ -139,3 +140,8 @@ SESSION_COOKIE_SECURE = True  # Session cookie over HTTPS only
 SECURE_HSTS_SECONDS = 31536000  # Enforce HTTPS (HSTS)
 SECURE_HSTS_INCLUDE_SUBDOMAINS = True  # Apply to subdomains
 SECURE_HSTS_PRELOAD = True  # Add preload to HSTS
+
+# Content Security Policy (CSP)
+CSP_DEFAULT_SRC = ("'self'",)
+CSP_STYLE_SRC = ("'self'", 'https://stackpath.bootstrapcdn.com')  # Adjust as needed
+CSP_SCRIPT_SRC = ("'self'", 'https://code.jquery.com')  # Adjust as needed
